@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=instant_mix" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=swap_vert" />
 </head>
 
 <body>
@@ -46,6 +50,33 @@
                     </div>
                 </div>
             </nav>
+            <!-- Sidebar for Filter & Sorting -->
+            <div class="right-popup">
+                <div class="sidebar-heading">
+                    <h3>Catgeory</h3>
+                    <span onClick="handleFilter()">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                            fill="#000">
+                            <path
+                                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                        </svg>
+                    </span>
+                </div>
+                <div class="filter-category-sidenav">
+                    <label>
+                        <input type="checkbox">
+                        Jewellery
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Men's clothing
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Women's clothing
+                    </label>
+                </div>
+            </div>
         </div>
 
     </section>
@@ -56,11 +87,35 @@
         </div>
     </section>
     <!-- Product Listing -->
-    <section></section>
+    <section>
+        <!-- Filter Section -->
+        <div class="main-content">
+            <aside class="filter">
+                <h3>Catgeory</h3>
+                <div class="filter-category">
+                </div>
+            </aside>
+            <!-- Responsive filter & sorting option -->
+            <section class="responsive-filter-sorting">
+                <div class="filter-sorting-option">
+                    <h6 onClick="handleFilter()">Filter Results</h6>
+                    <h6>Sort Products</h6>
+                </div>
+            </section>
+            <!-- Products Profiles -->
+            <section class="products">
+                <div class="items">
+                    <img src="https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" alt="">
+                    <p>55.99</p>
+                    <h3>Mens Cotton Jacket</h3>
+                </div>
+            </section>
+        </div>
+    </section>
     <!-- Footer/ Links/ Contacts -->
     <footer></footer>
     <header></header>
-    <h1>Products</h1>
+    <h1></h1>
     <div class="main"></div>
     <script src="./js/index.js" async defer></script>
 </body>
