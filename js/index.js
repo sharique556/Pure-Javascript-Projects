@@ -33,16 +33,16 @@ const displayProducts = (str) => {
     let newDataArray = [];
     dataArray.forEach((elem) => {
         if (elem.title.toLowerCase().includes(str.toLowerCase()) || elem.category.toLowerCase().includes(str.toLowerCase())) {
-            newDataArray = [...newDataArray,elem]
+            newDataArray = [...newDataArray, elem]
             productElem.innerHTML += `<div class="items">
-                            <img src=${elem?.image} alt=${elem?.title}>
-                            <p>${elem?.price} | ${elem?.rating?.rate}</p>
+                            <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                            <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
                             <p>${elem?.category?.toUpperCase()}</p>
                             <h3>${elem?.title}</h3>
                         </div>`
         }
     })
-    localStorage.setItem('display_data',JSON.stringify(newDataArray))
+    localStorage.setItem('display_data', JSON.stringify(newDataArray))
 }
 
 
@@ -83,8 +83,8 @@ const getAllProducts = async (checkedCat = []) => {
 
                     // Display products 
                     productElem.innerHTML += `<div class="items">
-                            <img src=${elem?.image} alt=${elem?.title}>
-                            <p>${elem?.price} | ${elem?.rating?.rate}</p>
+                            <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                            <p>Rs${elem?.price} | ${elem?.rating?.rate}</p>
                             <p>${elem?.category?.toUpperCase()}</p>
                             <h3>${elem?.title}</h3>
                         </div>`
@@ -156,8 +156,8 @@ const renderSortedProducts = (selected_value, data) => {
             })
             lowestPrice.forEach((elem) => {
                 productElem.innerHTML += `<div class="items">
-                                    <img src=${elem?.image} alt=${elem?.title}>
-                                    <p>${elem?.price} | ${elem?.rating?.rate}</p>
+                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
                                     <p>${elem?.category?.toUpperCase()}</p>
                                     <h3>${elem?.title}</h3>
                                 </div>`
@@ -169,8 +169,8 @@ const renderSortedProducts = (selected_value, data) => {
             })
             highest.forEach((elem) => {
                 productElem.innerHTML += `<div class="items">
-                                    <img src=${elem?.image} alt=${elem?.title}>
-                                    <p>${elem?.price} | ${elem?.rating?.rate}</p>
+                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
                                     <p>${elem?.category?.toUpperCase()}</p>
                                     <h3>${elem?.title}</h3>
                                 </div>`
@@ -182,8 +182,8 @@ const renderSortedProducts = (selected_value, data) => {
             })
             lowestRating.forEach((elem) => {
                 productElem.innerHTML += `<div class="items">
-                                    <img src=${elem?.image} alt=${elem?.title}>
-                                    <p>${elem?.price} | ${elem?.rating?.rate}</p>
+                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
                                     <p>${elem?.category?.toUpperCase()}</p>
                                     <h3>${elem?.title}</h3>
                                 </div>`
@@ -195,8 +195,8 @@ const renderSortedProducts = (selected_value, data) => {
             })
             highestRating.forEach((elem) => {
                 productElem.innerHTML += `<div class="items">
-                                    <img src=${elem?.image} alt=${elem?.title}>
-                                    <p>${elem?.price} | ${elem?.rating?.rate}</p>
+                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
                                     <p>${elem?.category?.toUpperCase()}</p>
                                     <h3>${elem?.title}</h3>
                                 </div>`
@@ -208,11 +208,13 @@ const renderSortedProducts = (selected_value, data) => {
 }
 
 // Sorting logic
-let sortSelection = document.querySelector("#sort")
-sortSelection.addEventListener('change', function () {
-    const selected_value = this.value;
-    let data = JSON.parse(localStorage.getItem('display_data'));
-    productElem.innerHTML = ""
-    // Display sorted data
-    renderSortedProducts(selected_value, data)
+let sortSelection = document.querySelectorAll("#sort")
+sortSelection.forEach((elem) => {
+    elem.addEventListener('change', function () {
+        const selected_value = this.value;
+        let data = JSON.parse(localStorage.getItem('display_data'));
+        productElem.innerHTML = ""
+        // Display sorted data
+        renderSortedProducts(selected_value, data)
+    })
 })

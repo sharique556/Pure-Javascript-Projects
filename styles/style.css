@@ -12,6 +12,12 @@
 
 .logo span {
     color: #fff;
+    font-size: 1.8rem;
+}
+
+.colored-section{
+    position: fixed;
+    width: -webkit-fill-available;
 }
 
 nav {
@@ -21,7 +27,10 @@ nav {
     justify-content: space-around;
     background-color: #1363DF;
     position: relative;
-    height: 75px;
+    height: 54px;
+    @media (max-width:600px) {
+        justify-content: space-between;
+    }
 }
 
 nav ul {
@@ -75,8 +84,15 @@ nav ul li a {
 
 /* Cover Img */
 
+.cover-img{
+    min-height: 5rem;
+    @media (max-width:600px) {
+        min-height: 30rem;
+    }
+}
+
 .cover-img img {
-    max-height: 22.5rem;
+    min-height: inherit;
     width: -webkit-fill-available;
 }
 
@@ -110,11 +126,13 @@ nav ul li a {
 }
 
 .filter-category label {
+    cursor: pointer;
     display: block;
     padding: 10px 0px;
 }
 
 .filter-category-sidenav label {
+    cursor: pointer;
     display: block;
     padding: 10px 10px;
 }
@@ -124,6 +142,7 @@ nav ul li a {
     align-items: center;
     justify-content: space-evenly;
     display: flex;
+    cursor: pointer;
 }
 
 .filter-sorting-option h6 {
@@ -173,7 +192,7 @@ nav ul li a {
     flex-basis: 30%;
     margin-bottom: 20px;
     box-shadow: 0px 0px 10px 2px #ccc;
-
+    cursor: pointer;
     @media (max-width : 600px) {
         flex-basis: 100%;
     }
@@ -218,7 +237,7 @@ h3 {
 
 .searchInputField {
     padding: 5px;
-
+    cursor: pointer;
     @media (max-width : 600px) {
         margin-left: 0.5rem;
     }
@@ -249,4 +268,10 @@ h3 {
 
 .user-feature {
     margin: 10px 0px
+}
+
+#sort{
+    @media (max-width:600px) {
+        margin-left: 0.5rem; 
+    }
 }
