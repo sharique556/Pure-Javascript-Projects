@@ -111,7 +111,7 @@ nav ul li a{
 
 .filter-category-sidenav label{
     display: block;
-    padding: 10px 0px;
+    padding: 10px 10px;
 }
 
 
@@ -203,3 +203,34 @@ nav ul li a{
     z-index: 20;
     left: 64%;
   }
+
+  /* Searching */
+
+  .searchInputField{
+    padding: 5px;
+    @media (max-width : 600px) {
+        margin-left: 0.5rem;
+    }
+  }
+
+  .searching-div{
+    display: block;
+    @media (max-width : 600px) {
+        display: none;
+    }
+  }
+
+  /* Footer */
+
+  .white-section{
+    height:100px;
+    background-color: #2A65D7;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .footer-icon{
+    margin : 100px 10px 10px 10px ;
+}
