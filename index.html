@@ -65,7 +65,7 @@
                 <div class="filter-category-sidenav">
                 </div>
                 <h3>Search Products</h3>
-                <input type="text" class="searchInputField" placeholder="search with keywords"/>
+                <input type="text" class="searchInputField" placeholder="search with keywords" />
             </div>
         </div>
     </section>
@@ -80,11 +80,32 @@
         <!-- Filter Section -->
         <div class="main-content">
             <aside class="filter">
-                <h3>Catgeory</h3>
-                <div class="filter-category">
+                <div class="user-feature">
+                    <h3>Catgeory</h3>
+                    <div class="filter-category">
+                    </div>
                 </div>
-                <h3>Search Products</h3>
-                <input type="text" class="searchInputField" placeholder="search with keywords"/>
+                <div class="user-feature">
+                    <h3>Search Products</h3>
+                    <input type="text" class="searchInputField" placeholder="search with keywords" />
+                </div>
+                <div class="user-feature">
+                    <h3>Sort Products</h3>
+                    <form action="#">
+                        <label fhtmlFor="sort"></label>
+                        <select name="sort" id="sort" class="sort-selection-style">
+                            <option value="no_selection">No Selection</option>
+                            <option value="#" disabled></option>
+                            <option value="lowest">Price(lowest)</option>
+                            <option value="#" disabled></option>
+                            <option value="highest">Price(highest)</option>
+                            <option value="#" disabled></option>
+                            <option value="rating_lowest">Rating(Lowest)</option>
+                            <option value="#" disabled></option>
+                            <option value="rating_highest">Rating(Highest)</option>
+                        </select>
+                    </form>
+                </div>
             </aside>
             <!-- Responsive filter & sorting option -->
             <section class="responsive-filter-sorting">
@@ -107,7 +128,7 @@
     <footer class="white-section" id="footer">
         <i class="footer-icon fas fa-envelope"></i>
         <p>© Copyright 2018 TinDog</p>
-      </footer>
+    </footer>
     <script src="./js/index.js" async defer></script>
 </body>
 
