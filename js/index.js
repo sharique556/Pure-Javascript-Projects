@@ -6,7 +6,11 @@ filterRightPopup.style.display = "none";
 
 let productElem = document.querySelector(".products");
 
+const API_ENDPOINT = "https://fakestoreapi.com/products";
+let distinctCategory = []
 
+
+// Toggling menu bar
 function handleMenu() {
     if (menuList.style.maxHeight === "0px") {
         menuList.style.maxHeight = "400px"
@@ -15,6 +19,7 @@ function handleMenu() {
     }
 }
 
+// Toggling Features in mobile view
 function handleFilter() {
     if (filterRightPopup.style.display === 'none') {
         filterRightPopup.style.display = 'block';
@@ -22,9 +27,6 @@ function handleFilter() {
         filterRightPopup.style.display = 'none';
     }
 }
-
-const API_ENDPOINT = "https://fakestoreapi.com/products";
-let distinctCategory = []
 
 // Displaying data after filter
 const displayProducts = (str) => {
@@ -53,8 +55,8 @@ const getAllProducts = async (checkedCat = []) => {
     let filterCategoryDivSide = document.querySelector(".filter-category-sidenav")
     // filterCategoryDiv.innerHTML = "";
     try {
-        productElem.innerHTML = `<div class="loaderDiv"><div class="loader"></div><h1>...loading</h1></div>`;
-        document.querySelector(".loaderDiv").style.minHeight = "800px";
+        productElem.innerHTML = `<div class="loaderDiv"><div class="loader"></div><div><p>...loading</p><div></div>`;
+        // document.querySelector(".loaderDiv").style.minHeight = "800px";
         const data = await fetch(API_ENDPOINT)
         const product_list = await data?.json()
         if (product_list?.length) {
@@ -80,7 +82,6 @@ const getAllProducts = async (checkedCat = []) => {
 
                 if (checkedCat.includes(elem?.category)) {
                     displayedData = [...displayedData, elem]
-
                     // Display products 
                     productElem.innerHTML += `<div class="items">
                             <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
@@ -127,6 +128,7 @@ const handleInputField = (e) => {
     displayProducts(typedStr)
 }
 
+// Debounce function rate limit the typed keyword
 let debounce = function (fn, delay) {
     let timer
     return function () {
@@ -191,7 +193,7 @@ const renderSortedProducts = (selected_value, data) => {
             break;
         case 'rating_highest':
             let highestRating = data.sort((a, b) => {
-                return b.rating.rate - a.rating.rate
+                return b?.rating?.rate - a?.rating?.rate
             })
             highestRating.forEach((elem) => {
                 productElem.innerHTML += `<div class="items">

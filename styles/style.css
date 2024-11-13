@@ -15,7 +15,7 @@
     font-size: 1.8rem;
 }
 
-.colored-section{
+.colored-section {
     position: fixed;
     width: -webkit-fill-available;
 }
@@ -28,6 +28,7 @@ nav {
     background-color: #1363DF;
     position: relative;
     height: 54px;
+
     @media (max-width:600px) {
         justify-content: space-between;
     }
@@ -84,8 +85,9 @@ nav ul li a {
 
 /* Cover Img */
 
-.cover-img{
+.cover-img {
     min-height: 5rem;
+
     @media (max-width:600px) {
         min-height: 30rem;
     }
@@ -164,9 +166,9 @@ nav ul li a {
 }
 
 .sidebar-heading {
-    background-color: #F3F3F3;
+    /* background-color: #F3F3F3; */
     display: flex;
-    padding: 7%;
+    /* padding: 7%; */
     justify-content: space-between;
 }
 
@@ -193,6 +195,7 @@ nav ul li a {
     margin-bottom: 20px;
     box-shadow: 0px 0px 10px 2px #ccc;
     cursor: pointer;
+
     @media (max-width : 600px) {
         flex-basis: 100%;
     }
@@ -228,9 +231,16 @@ h3 {
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
-    position: fixed;
+    position: absolute;
     z-index: 20;
-    left: 64%;
+    left: 56%;
+    @media (max-width:600px) {
+        left: 40%;
+    }
+}
+
+.loaderDiv{
+    min-height: 400px;
 }
 
 /* Searching */
@@ -238,8 +248,9 @@ h3 {
 .searchInputField {
     padding: 5px;
     cursor: pointer;
+
     @media (max-width : 600px) {
-        margin-left: 0.5rem;
+        margin: 14px 0px 14px 7px;
     }
 }
 
@@ -270,8 +281,41 @@ h3 {
     margin: 10px 0px
 }
 
-#sort{
+#sort {
+    width: 63%;
+    height: 29px;
     @media (max-width:600px) {
-        margin-left: 0.5rem; 
+        width: 67%;
+        margin: 14px 0px 14px 7px;
     }
+}
+
+.product-profile {
+    @media (min-width : 600px) {
+        margin: 0px 2%;
+    }
+}
+
+.product-profile h1 {
+    position: relatve;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    padding: 1% 0%;
+    font-size: 2rem;
+}
+
+.right-popup  h3 {
+    @media (max-width:600px) {
+        width: -webkit-fill-available;
+        background-color: #F3F3F3 !important;
+        padding: 7%;
+    }
+}
+
+.close_btn{
+    padding: 6%;
+    align-items: center;
+    display: flex;
+    background-color: #F3F3F3;
 }
