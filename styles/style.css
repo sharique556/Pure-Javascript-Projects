@@ -220,6 +220,7 @@ h3 {
 
 .error-ui h1 {
     font-size: 3rem;
+    color: grey;
 }
 
 .loader {
@@ -318,4 +319,10 @@ h3 {
     align-items: center;
     display: flex;
     background-color: #F3F3F3;
+}
+
+.error-dv{
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
 }

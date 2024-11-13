@@ -6,7 +6,33 @@ filterRightPopup.style.display = "none";
 
 let productElem = document.querySelector(".products");
 
+// API Endpoint
 const API_ENDPOINT = "https://fakestoreapi.com/products";
+
+// Error elements
+const ERROR_ELEMENT = `<div class="error-dv">
+        <svg xmlns="http://www.w3.org/2000/svg" height="100px" viewBox="0 -960 960 960" width="100px" fill="#5f6368"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+        </div><div class="error-ui"><h1>Oops! Something went wrong</h1></div>`;
+
+// Display products
+const renderProductsElements = (elem) => {
+    return `<div class="items">
+                            <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                            <p>Rs${elem?.price} | ${elem?.rating?.rate}</p>
+                            <p>${elem?.category?.toUpperCase()}</p>
+                            <h3>${elem?.title}</h3>
+                        </div>`
+}
+
+// Html element for sorted elements
+const sortedElements = (elem) => {
+    return `<div class="items">
+                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
+                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
+                                    <p>${elem?.category?.toUpperCase()}</p>
+                                    <h3>${elem?.title}</h3>
+                                </div>`
+}
 let distinctCategory = []
 
 
@@ -76,6 +102,7 @@ const getAllProducts = async (checkedCat = []) => {
                     distinctCategory.push(elem?.category)
                 }
 
+                // Put all the data of the checkboxes
                 if (checkedCat?.length == 0) {
                     checkedCat = distinctCategory;
                 }
@@ -83,23 +110,20 @@ const getAllProducts = async (checkedCat = []) => {
                 if (checkedCat.includes(elem?.category)) {
                     displayedData = [...displayedData, elem]
                     // Display products 
-                    productElem.innerHTML += `<div class="items">
-                            <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
-                            <p>Rs${elem?.price} | ${elem?.rating?.rate}</p>
-                            <p>${elem?.category?.toUpperCase()}</p>
-                            <h3>${elem?.title}</h3>
-                        </div>`
+                    productElem.innerHTML += renderProductsElements(elem)
                 }
             })
         }
         localStorage.setItem("display_data", JSON.stringify(displayedData))
 
     } catch (err) {
-        productElem.innerHTML = `<div class="error-ui"><h1>Oops! Something went wrong</h1></div>`
+        productElem.innerHTML = ERROR_ELEMENT;
         throw new Error("Something went wrong.");
     }
 
 }
+
+// Calling products api
 getAllProducts()
 
 // Handle checkbox for filtering
@@ -114,7 +138,6 @@ const handleCategoryFilter = () => {
     let checkData = [];
     checkInput.forEach((e) => {
         if (e.checked) {
-
             checkData.push(e.value)
         }
     })
@@ -141,6 +164,7 @@ let debounce = function (fn, delay) {
     }
 }
 
+// Limiting the search string by 1000 secs
 let searchElem = document.querySelectorAll(".searchInputField")
 if (searchElem.length) {
     searchElem.forEach((elem) => {
@@ -157,12 +181,7 @@ const renderSortedProducts = (selected_value, data) => {
                 return a.price - b.price
             })
             lowestPrice.forEach((elem) => {
-                productElem.innerHTML += `<div class="items">
-                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
-                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
-                                    <p>${elem?.category?.toUpperCase()}</p>
-                                    <h3>${elem?.title}</h3>
-                                </div>`
+                productElem.innerHTML += sortedElements(elem)
             })
             break;
         case 'highest':
@@ -170,12 +189,7 @@ const renderSortedProducts = (selected_value, data) => {
                 return b.price - a.price
             })
             highest.forEach((elem) => {
-                productElem.innerHTML += `<div class="items">
-                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
-                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
-                                    <p>${elem?.category?.toUpperCase()}</p>
-                                    <h3>${elem?.title}</h3>
-                                </div>`
+                productElem.innerHTML += sortedElements(elem)
             })
             break;
         case 'rating_lowest':
@@ -183,12 +197,7 @@ const renderSortedProducts = (selected_value, data) => {
                 return a?.rating?.rate - b?.rating?.rate
             })
             lowestRating.forEach((elem) => {
-                productElem.innerHTML += `<div class="items">
-                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
-                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
-                                    <p>${elem?.category?.toUpperCase()}</p>
-                                    <h3>${elem?.title}</h3>
-                                </div>`
+                productElem.innerHTML += sortedElements(elem)
             })
             break;
         case 'rating_highest':
@@ -196,12 +205,7 @@ const renderSortedProducts = (selected_value, data) => {
                 return b?.rating?.rate - a?.rating?.rate
             })
             highestRating.forEach((elem) => {
-                productElem.innerHTML += `<div class="items">
-                                    <img loading="lazy" src=${elem?.image} data-src=${elem?.image} alt=${elem?.title}>
-                                    <p>Rs ${elem?.price} | ${elem?.rating?.rate}</p>
-                                    <p>${elem?.category?.toUpperCase()}</p>
-                                    <h3>${elem?.title}</h3>
-                                </div>`
+                productElem.innerHTML += sortedElements(elem)
             })
             break;
         default:
